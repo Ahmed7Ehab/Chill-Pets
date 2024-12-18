@@ -7,6 +7,7 @@ body {
     border: none;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
+
 .hero-section {
     position: relative;
     background: url('Assets/Images/s3.jpg') center/cover no-repeat;
@@ -50,8 +51,13 @@ body {
     color: white;
     padding: 5px 10px;
     border: none;
-    border-radius: 4px;
+    border-radius: 50px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-remove:hover {
+    background-color: #7E4C4F;
 }
 
 .summary-title {
@@ -69,8 +75,13 @@ body {
     margin-top: 1rem;
     padding: 10px;
     border: none;
-    border-radius: 4px;
+    border-radius: 50px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-checkout:hover {
+    background-color: #7E4C4F;
 }
 
 
@@ -79,14 +90,20 @@ body {
     color: white;
     padding: 10px;
     border: none;
-    border-radius: 4px;
+    border-radius: 50px;
     cursor: pointer;
     width: auto;
+    transition: background-color 0.3s ease;
+}
+
+.btn-modal-cancel:hover, .btn-modal-confirm:hover {
+    background-color: #7E4C4F;
 }
 
 .btn-modal-cancel {
     background-color: #F6AB4A;
 }
+
 input::placeholder {
     color: #868080;
     opacity: 1;
@@ -94,4 +111,20 @@ input::placeholder {
 
 input:focus::placeholder {
     color: #a0a0a0;
+}
+
+.quantity-input {
+    width: 60px;
+    text-align: center;
+}
+
+.quantity-btn {
+    background-color: #F6AB4A;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+}
+
+.quantity-btn:hover {
+    background-color: #7E4C4F;
 }

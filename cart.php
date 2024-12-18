@@ -37,7 +37,8 @@
                 <div class="card mb-3">
                     <div class="row g-0 align-items-center">
                         <div class="col-md-4">
-                            <img src="Assets/Images/product19.jpg" class="product-image img-fluid w-100 rounded-start" alt="Product Image" >
+                            <img src="Assets/Images/product19.jpg" class="product-image img-fluid w-100 rounded-start"
+                                 alt="Product Image">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
@@ -45,9 +46,16 @@
                                 <p class="card-text product-description">Durable and fun toy for your pet.</p>
                                 <div class="d-flex align-items-center justify-content-between">
                                     <span class="fw-bold">$15.99</span>
-                                    <label>
-                                        <input type="number" min="1" class="form-control w-50" value="1">
-                                    </label>
+                                    <div class="mt-4">
+                                        <strong>Quantity:</strong>
+                                        <div class="d-flex align-items-center mt-2">
+                                            <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
+                                            <label for="quantity"></label><input type="number" id="quantity"
+                                                                                 class="form-control quantity-input mx-2"
+                                                                                 value="1" min="1">
+                                            <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+                                        </div>
+                                    </div>
                                     <button class="btn-remove">
                                         Remove
                                     </button>
@@ -126,7 +134,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn-modal-cancel" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn-modal-confirm" data-bs-toggle="modal" data-bs-target="#orderConfirmationModal">Confirm Payment</button>
+                <button type="button" class="btn-modal-confirm" data-bs-toggle="modal"
+                        data-bs-target="#orderConfirmationModal">Confirm Payment
+                </button>
             </div>
         </div>
     </div>
@@ -148,7 +158,9 @@
                 </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn-modal-cancel" data-bs-toggle="modal" data-bs-target="#orderCanceledModal">Cancel Order</button>
+                <button type="button" class="btn-modal-cancel" data-bs-toggle="modal"
+                        data-bs-target="#orderCanceledModal">Cancel Order
+                </button>
                 <button type="button" class="btn-modal-confirm" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
@@ -179,6 +191,21 @@
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function increaseQuantity() {
+        const quantityInput = document.getElementById('quantity');
+        const currentValue = parseInt(quantityInput.value);
+        quantityInput.value = currentValue + 1;
+    }
+
+    function decreaseQuantity() {
+        const quantityInput = document.getElementById('quantity');
+        const currentValue = parseInt(quantityInput.value);
+        if (currentValue > 1) {
+            quantityInput.value = currentValue - 1;
+        }
+    }
+</script>
 </body>
 
 </html>
