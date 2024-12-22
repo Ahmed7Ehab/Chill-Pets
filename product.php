@@ -28,7 +28,7 @@
 </section>
 
 <!-- Product Details Section -->
-<div class="container mt-5">
+<div class="container my-5">
     <div class="row justify-content-center">
         <!-- Product Image -->
         <div class="col-md-4">
@@ -67,18 +67,19 @@
             <button class="btn btn-add-to-cart mt-4">Add to Cart</button>
         </div>
     </div>
-    <div class="additional-space mb-5"></div>
 </div>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+    // Function to increase product quantity
     function increaseQuantity() {
         const quantityInput = document.getElementById('quantity');
         const currentValue = parseInt(quantityInput.value);
         quantityInput.value = currentValue + 1;
     }
 
+    // Function to decrease product quantity
     function decreaseQuantity() {
         const quantityInput = document.getElementById('quantity');
         const currentValue = parseInt(quantityInput.value);

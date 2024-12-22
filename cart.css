@@ -128,3 +128,22 @@ input:focus::placeholder {
 .quantity-btn:hover {
     background-color: #7E4C4F;
 }
+
+.modal-header {
+    background-color: #7E4C4F;
+    color: white;
+    border: none;
+}
+
+.form-control,
+.form-select {
+    border: none;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    padding: 8px 12px;
+}
+
+.form-label {
+    color: #7E4C4F;
+    font-weight: bold;
+}
