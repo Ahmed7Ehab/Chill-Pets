@@ -40,7 +40,9 @@ body {
 
 /* Form Headings */
 .form-container .form-content h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+
 }
 
 /* Label Styling */
@@ -66,7 +68,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #f59b26;
+    background-color: #F6AB4A;
 }
 
 /* Responsive Adjustments */
