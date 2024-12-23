@@ -6,7 +6,6 @@ if (isset($_SESSION['email'])) {
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST['add'])) {
-        print_r($_POST);
             $query='INSERT INTO products (category_id ,title,picture,product_description,price,p_status,quantity)
                     values (:category,:title,:picture,:description,:price,:p_status,:quantity)';
             $name = $_POST['name'];
