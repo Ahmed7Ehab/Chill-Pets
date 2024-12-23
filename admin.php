@@ -117,7 +117,12 @@ else {
             </form>
         </div>
     </div>
-
+    <?php
+    $query = "SELECT * FROM products";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    $products = $stmt->fetchAll();
+    ?>
     <!-- Products Section -->
     <div class="card mb-4">
         <div class="card-header">
@@ -137,13 +142,20 @@ else {
                     </thead>
                     <tbody>
                     <!-- Example Row -->
+                    <?php foreach ($products as $product) { ?>
                     <tr>
                         <td>
-                            <img src="Assets/Images/product19.jpg" alt="Product Image" class="img-fluid">
+                            <img src="<?= "storage/".$product['picture']?>" alt="Product Image" class="img-fluid">
                         </td>
-                        <td>Premium Cat Food</td>
-                        <td>$20.99</td>
-                        <td>Cat</td>
+                        <td><?= $product['title']?></td>
+                        <td><?= "$".$product['price']?></td>
+                        <td><?php
+                                    $query2 = 'SELECT category_name FROM categories where id = "'.$product['category_id'].'" '; ;
+                                    $stmt2 = $pdo->prepare($query2);
+                                    $stmt2->execute();
+                                    $categories = $stmt2->fetchAll();
+                                    echo $categories['0']['category_name'];
+                            ?></td>
                         <td>
                             <button class="btn btn-sm btn-warning me-3" data-bs-toggle="modal"
                                     data-bs-target="#editProductModal">Edit
@@ -151,7 +163,7 @@ else {
                             <button class="btn btn-sm btn-danger">Delete</button>
                         </td>
                     </tr>
-
+                    <?php }?>
                     </tbody>
                 </table>
             </div>
