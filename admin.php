@@ -1,4 +1,5 @@
 <?php
+global $pdo;
 include 'init.php';
 session_start();
 if (isset($_SESSION['email'])) {
@@ -110,7 +111,7 @@ if (isset($_SESSION['email'])) {
                         <option value="3">Fish</option>
                     </select>
                 </div>
-                <!--status!-->
+                <!--status-->
                 <div class="mb-3">
                     <label for="productStatus" class="form-label">Product Status</label>
                     <select class="form-select" id="productStatus" required>

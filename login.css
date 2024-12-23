@@ -16,6 +16,7 @@ body {
     height: 400px;
     margin: 20px auto;
 }
+
 body {
     font-family: 'Open Sans', sans-serif;
     margin: 0;
@@ -61,6 +62,7 @@ label {
     font-weight: bold;
     color: #fff;
 }
+
 /* Styling for the Placeholder Text */
 .form-container input::placeholder {
     color: #753d41;
@@ -78,6 +80,12 @@ button[type="submit"] {
     margin: 20px auto 0 auto;
 }
 
+.form-container a {
+    color: #fff;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
 button[type="submit"]:hover {
     background-color: #F6AB4A;
 }
@@ -88,6 +96,7 @@ button[type="submit"]:hover {
         max-width: 90%;
         padding: 15px;
     }
+
     form-container .form-content h1 {
         font-size: 2rem;
     }

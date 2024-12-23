@@ -9,15 +9,14 @@ body {
 .form-container {
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    background-image: url('Assets/Images/home-img.jpeg');
+    background-image: url('Assets/images/home-img.jpeg');
     background-size: cover;
     background-position: center;
     position: relative;
     overflow: hidden;
     width: 100%;
     max-width: 500px;
-    margin: 20px auto;
-
+    margin: -30px auto;
 }
 
 /* Overlay Styling */
@@ -38,11 +37,13 @@ body {
     color: #fff;
 }
 
+.form-group {
+    margin-top: -10px;
+}
+
 /* Form Headings */
 .form-container .form-content h1 {
-    font-size: 2rem;
-    font-weight: bold;
-
+    font-size: 2.5rem;
 }
 
 /* Label Styling */
@@ -53,8 +54,8 @@ label {
 
 /* Styling for the Placeholder Text */
 .form-container input::placeholder {
-    color: #753d41; /* لون النص placeholder */
-    opacity: 1; /* للتحكم في شفافية النص */
+    color: #753d41;
+    opacity: 1;
 }
 
 /* Submit Button Styling */
@@ -64,11 +65,11 @@ button[type="submit"] {
     transition: background-color 0.3s ease;
     width: 300px;
     display: block;
-    margin: 20px auto 0 auto; /* توسيط الزر */
+    margin: 20px auto 0 auto;
 }
 
 button[type="submit"]:hover {
-    background-color: #F6AB4A;
+    background-color: #f59b26;
 }
 
 /* Responsive Adjustments */

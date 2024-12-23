@@ -14,7 +14,7 @@
 </head>
 
 <body>
-
+<?php include 'includes/header.php'; ?>
 <!-- Hero Section -->
 <section class="bg-light py-5 hero-section">
     <div class="container text-center text-white">
@@ -71,6 +71,7 @@
 
     </div>
 </div>
+<?php include 'includes/footer.php'; ?>
 
 
 <!-- Bootstrap JS -->

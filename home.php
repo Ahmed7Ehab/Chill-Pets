@@ -11,40 +11,16 @@
     <link rel="stylesheet" href="home.css">
 </head>
 <body>
-<!-- Header Section -->
-<nav class="navbar navbar-expand-lg navbar-dark  fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="#">Chill Pets</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Dog</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Cat</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Bird</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Fish</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-            </ul>
-            <div class="ml-lg-3 d-flex align-items-center">
-                <i class="fas fa-user text-white mx-2"></i>
-                <i class="fas fa-shopping-cart text-white"></i>
-            </div>
-        </div>
-    </div>
-</nav>
+
+<?php include 'includes/header.php'; ?>
 
 <!-- Home Image Section -->
 <div class="homeimg">
     <div class="home-content text-center">
         <h2 class="homtit1"><span class="homtit2">A</span>Shelter Pet Wants</h2>
         <h2 class="homtit2">To Meet You</h2>
-        <button class="register-btn btn">Register</button>
-        <button class="login-btn btn">Login</button>
+        <a href="register.php" class="btn register-btn">Register</a>
+        <a href="login.php" class="btn login-btn">Login</a>
     </div>
 </div>
 
@@ -53,20 +29,28 @@
     <h2>Shop by <span>Categories</span></h2>
     <div class="categories-wrapper">
         <div class="category">
-            <img src="Assets/Images/dog.jpg" alt="Dog">
-            <p>Dog</p>
+            <a href="dog.php">
+                <img src="Assets/Images/dog.jpg" alt="Dog">
+            </a>
+            <a href="cat.php"><p>Dog</p></a>
         </div>
         <div class="category">
-            <img src="Assets/Images/cat.jpg" alt="Cat">
-            <p>Cat</p>
+            <a href="cat.php">
+                <img src="Assets/Images/cat.jpg" alt="Cat">
+            </a>
+            <a href="cat.php"><p>Cat</p></a>
         </div>
         <div class="category">
-            <img src="Assets/Images/fish.jpg" alt="Fish">
-            <p>Fish</p>
+            <a href="fish.php">
+                <img src="Assets/Images/fish.jpg" alt="Fish">
+            </a>
+            <a href="cat.php"><p>Fish</p></a>
         </div>
         <div class="category">
-            <img src="Assets/Images/bird2.png" alt="Bird">
-            <p>Bird</p>
+            <a href="bird.php">
+                <img src="Assets/Images/bird2.png" alt="Bird">
+            </a>
+            <a href="cat.php"><p>Bird</p></a>
         </div>
     </div>
 </div>
@@ -156,7 +140,7 @@
 
     </div>
 </div>
-
+<?php include 'includes/footer.php'; ?>
 
 <!-- Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

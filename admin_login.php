@@ -1,35 +1,31 @@
-
 <?php
-    session_start();
-    if(isset($_SESSION['email'])){
-            header('location:admin.php?you_are_logged_in_already');
+session_start();
+if (isset($_SESSION['email'])) {
+    header('location:admin.php?you_are_logged_in_already');
 
-    }
-    include 'init.php';
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+}
+include 'init.php';
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        if (isset($_POST['admin_login'])) {
-            $email = $_POST['user_email'];
-            $password = $_POST['user_password'];
-            $hashedpass=sha1($password);
-            $stmt = $pdo->prepare("SELECT email,password FROM users WHERE email = ? AND password = ? and role ='admin'");
-            $stmt->execute(array($email, $hashedpass));
-            $count=$stmt->rowCount();
-            if ($count==1) {
-                $info=$stmt->fetch();
-                $_SESSION['email'] = $email;
-                $_SESSION['name']  = $info['first_name'];
-                $_SESSION['role']  = 'admin';
-                header('Location: admin.php?message=Login Successful');
-            }
-            else{
-                echo "something went wrong";
-            }
-
+    if (isset($_POST['admin_login'])) {
+        $email = $_POST['user_email'];
+        $password = $_POST['user_password'];
+        $hashedpass = sha1($password);
+        $stmt = $pdo->prepare("SELECT email,password FROM users WHERE email = ? AND password = ? and role ='admin'");
+        $stmt->execute(array($email, $hashedpass));
+        $count = $stmt->rowCount();
+        if ($count == 1) {
+            $info = $stmt->fetch();
+            $_SESSION['email'] = $email;
+            $_SESSION['name'] = $info['first_name'];
+            $_SESSION['role'] = 'admin';
+            header('Location: admin.php?message=Login Successful');
+        } else {
+            echo "something went wrong";
         }
+
     }
-
-
+}
 
 
 ?>
@@ -60,24 +56,27 @@
                         <!-- Email -->
                         <div class="form-group">
                             <label for="user_email" class="text-light">Email</label>
-                            <input type="email" id="user_email" name="user_email" class="form-control" placeholder="Enter your email" required />
+                            <input type="email" id="user_email" name="user_email" class="form-control"
+                                   placeholder="Enter your email" required/>
                         </div>
                         <!-- Password -->
                         <div class="form-group">
                             <label for="user_password" class="text-light">Password</label>
-                            <input type="password" id="user_password" name="user_password" class="form-control" placeholder="Enter your password" required />
+                            <input type="password" id="user_password" name="user_password" class="form-control"
+                                   placeholder="Enter your password" required/>
                         </div>
                         <!-- Submit Button -->
                         <!--<button type="submit" class="btn btn-primary btn-block mb-6" name="user_login">Login</button>-->
-                        <button type="submit" class="btn btn-primary btn-block mb-6" name="admin_login">Login as admin</button>
-                     </form>
-                 </div>
-             </div>
-         </div>
-     </div>
- </div>
+                        <button type="submit" class="btn btn-primary btn-block mb-6" name="admin_login">Login as Admin
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
- <!-- Bootstrap JS -->
+<!-- Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

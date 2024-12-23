@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="register.css">
 </head>
 <body>
-<div class="container mt-5">
+<div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-6 col-12">
             <div class="form-container p-4">
@@ -21,12 +21,24 @@
                 <!-- Form Content -->
                 <div class="form-content">
                     <h1 class="text-center mb-4 text-light">Register Form</h1>
-                    <form action="home.html" method="post">
-                        <!-- Name -->
+                    <form action="home.php" method="post">
+                        <!-- First_Name -->
                         <div class="form-group">
-                            <label for="user_name" class="text-light">Name</label>
-                            <input type="text" id="user_name" name="user_name" class="form-control"
-                                   placeholder="Enter your name" required/>
+                            <label for="first_name" class="text-light">First Name</label>
+                            <input type="text" id="first_name" name="first_name" class="form-control"
+                                   placeholder="Enter your first name" required/>
+                        </div>
+                        <!--Last Name -->
+                        <div class="form-group">
+                            <label for="last_name" class="text-light">Last Name</label>
+                            <input type="text" id="last_name" name="last_name" class="form-control"
+                                   placeholder="Enter your last name" required/>
+                        </div>
+                        <!-- Address -->
+                        <div class="form-group">
+                            <label for="address" class="text-light">Address</label>
+                            <input type="text" id="address" name="address" class="form-control"
+                                   placeholder="Enter your address" required/>
                         </div>
                         <!-- Email -->
                         <div class="form-group">
