@@ -21,7 +21,7 @@
                 <!-- Form Content -->
                 <div class="form-content">
                     <h1 class="text-center mb-4 text-light">Register Form</h1>
-                    <form action="home.php" method="post">
+                    <form action="insert.php" method="post">
                         <!-- First_Name -->
                         <div class="form-group">
                             <label for="first_name" class="text-light">First Name</label>
@@ -43,19 +43,19 @@
                         <!-- Email -->
                         <div class="form-group">
                             <label for="user_email" class="text-light">Email</label>
-                            <input type="email" id="user_email" name="user_email" class="form-control"
+                            <input type="email" id="user_email" name="email" class="form-control"
                                    placeholder="Enter your email" required/>
                         </div>
                         <!-- Phone -->
                         <div class="form-group">
                             <label for="user_phone" class="text-light">Phone Number</label>
-                            <input type="tel" id="user_phone" name="user_phone" class="form-control"
+                            <input type="tel" id="user_phone" name="phone" class="form-control"
                                    placeholder="Enter your phone number" required/>
                         </div>
                         <!-- Password -->
                         <div class="form-group">
                             <label for="user_password" class="text-light">Password</label>
-                            <input type="password" id="user_password" name="user_password" class="form-control"
+                            <input type="password" id="user_password" name="password" class="form-control"
                                    placeholder="Enter your password" required/>
                         </div>
                         <!-- Confirm Password -->
