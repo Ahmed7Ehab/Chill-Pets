@@ -58,15 +58,18 @@
 <div class="featured_product">
     <h2>Featured Products</h2>
     <div class="featured-wrapper">
-        <div class="types">
-            <div class="product-img mb-3">
-                <i class="cart fa-solid fa-cart-shopping"></i>
-                <img src="Assets/Images/dogf.png" alt="Healthy Treats">
+        <--clickable product-->
+        <a href="product.php" style="text-decoration: none; color: inherit;">
+            <div class="types">
+                <div class="product-img mb-3">
+                    <i class="cart fa-solid fa-cart-shopping"></i>
+                    <img src="Assets/Images/dogf.png" alt="Healthy Treats">
+                </div>
+                <h3>Healthy Treats</h3>
+                <p>RS.50.34$</p>
+                <p class="p_featured">instock</p>
             </div>
-            <h3>Healthy Treats</h3>
-            <p>RS.50.34$</p>
-            <p class="p_featured">instock</p>
-        </div>
+        </a>
         <div class="types">
             <div class="product-img mb-3">
                 <i class="cart fa-solid fa-cart-shopping"></i> <!-- Add to Cart Icon -->

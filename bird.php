@@ -32,15 +32,18 @@
 
 <div class="featured_product container my-5">
     <div class="featured-wrapper">
-        <div class="types">
-            <div class="product-img mb-3">
-                <i class="cart fa-solid fa-cart-shopping"></i>
-                <img src="Assets/Images/product3.jpg" alt="Healthy Treats">
+        <!--clickable product-->
+        <a href="product.php" style="text-decoration: none; color: inherit;">
+            <div class="types">
+                <div class="product-img mb-3">
+                    <i class="cart fa-solid fa-cart-shopping"></i>
+                    <img src="Assets/Images/product3.jpg" alt="Healthy Treats">
+                </div>
+                <h3>Lamb Fillets</h3>
+                <p>RS.80.14$</p>
+                <p class="p_featured">instock</p>
             </div>
-            <h3>Lamb Fillets</h3>
-            <p>RS.80.14$</p>
-            <p class="p_featured">instock</p>
-        </div>
+        </a>
         <div class="types">
             <div class="product-img mb-3">
                 <i class="cart fa-solid fa-cart-shopping"></i>
