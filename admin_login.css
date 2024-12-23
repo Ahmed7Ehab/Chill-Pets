@@ -1,0 +1,102 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+}
+
+/* Form Container Styling */
+.form-container {
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-image: url('Assets/Images/home-img.jpeg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    width: 500px;
+    height: 400px;
+    margin: 20px auto;
+}
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure the full height of the viewport */
+    background-color: #f8f9fa; /* Optional background color */
+}
+
+.container {
+    margin: 0; /* Reset margin for centering */
+    padding: 0;
+}
+
+/* Overlay Styling */
+.form-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+/* Form Content Styling */
+.form-content {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+}
+
+/* Form Headings */
+.form-container .form-content h1 {
+    font-size: 2rem;
+    font-weight: bold;
+
+}
+
+/* Label Styling */
+label {
+    font-weight: bold;
+    color: #fff;
+}
+/* Styling for the Placeholder Text */
+.form-container input::placeholder {
+    color: #753d41;
+    opacity: 1;
+}
+
+/* Submit Button Styling */
+button[type="submit"] {
+    background-color: #7e4c4f;
+    font-size: 20px !important;
+    border: none;
+    transition: background-color 0.3s ease;
+    width: 300px;
+    display: block;
+    margin: 20px auto 0 auto;
+}
+
+button[type="submit"]:hover {
+    background-color: #F6AB4A;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .form-container {
+        max-width: 90%;
+        padding: 15px;
+    }
+    form-container .form-content h1 {
+        font-size: 2rem;
+    }
+
+    input[type="email"],
+    input[type="password"],
+    button[type="submit"] {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+

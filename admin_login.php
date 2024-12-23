@@ -1,31 +1,13 @@
+
 <?php
     session_start();
     if(isset($_SESSION['email'])){
-            header('location:home.php?you_are_logged_in_already');
+            header('location:admin.php?you_are_logged_in_already');
 
     }
     include 'init.php';
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (isset($_POST['user_login'])) {
-            $email = $_POST['user_email'];
-            $password = $_POST['user_password'];
-            $hashedpass=sha1($password);
-            $query = "SELECT * FROM users WHERE email=? AND password=?";
-            $stmt = $pdo->prepare($query);
-            $stmt->execute([$email, $hashedpass]);
-            $count=$stmt->rowCount();
-            if ($count==1) {
-               $info=$stmt->fetch();
-                $_SESSION['email'] = $email;
-                $_SESSION['name']= $info['first_name'];
-                $_SESSION['role']= $info['role'];
-                header('Location: home.php?message=Login Successful');
-            }
-            else{
-               /*$formError[]=*/ echo 'something went wrong';
-            }
 
-        }
         if (isset($_POST['admin_login'])) {
             $email = $_POST['user_email'];
             $password = $_POST['user_password'];
@@ -86,9 +68,8 @@
                             <input type="password" id="user_password" name="user_password" class="form-control" placeholder="Enter your password" required />
                         </div>
                         <!-- Submit Button -->
-                        <button type="submit" class="btn btn-primary btn-block mb-6" name="user_login">Login</button>
-                        <!--  <button type="submit" class="btn btn-primary btn-block mb-6" name="admin_login">Login as admin</button>-->
-                        <a href="admin_login.php">Admin?</a>
+                        <!--<button type="submit" class="btn btn-primary btn-block mb-6" name="user_login">Login</button>-->
+                        <button type="submit" class="btn btn-primary btn-block mb-6" name="admin_login">Login as admin</button>
                      </form>
                  </div>
              </div>
