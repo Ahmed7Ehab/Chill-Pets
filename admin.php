@@ -37,7 +37,6 @@ if (isset($_SESSION['email'])) {
                         }
                     }
                 }
-
             }
         }
     }
@@ -175,7 +174,7 @@ if (isset($_SESSION['email'])) {
                             <td><?= $product['quantity'] ?></td>
                             <td>
                                 <button class="btn btn-sm btn-warning me-3" data-bs-toggle="modal"
-                                        data-bs-target="#editProductModal">Edit
+                                        data-bs-target="#editProductModal" >Edit
                                 </button>
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </td>

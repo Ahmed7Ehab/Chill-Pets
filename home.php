@@ -1,3 +1,11 @@
+<?php
+include "init.php";
+session_start();
+$q="SELECT * FROM `products` where avg_rete >='5' limit 4";
+$stmt= $pdo->prepare($q);
+$stmt->execute();
+$products=$stmt->fetchAll();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,28 +37,28 @@
     <h2>Shop by <span>Categories</span></h2>
     <div class="categories-wrapper">
         <div class="category">
-            <a href="dog.php">
+            <a href="dog.php?category=dog">
                 <img src="Assets/Images/dog.jpg" alt="Dog">
             </a>
-            <a href="cat.php"><p>Dog</p></a>
+            <a href="cat.php?category_id=dog"><p>Dog</p></a>
         </div>
         <div class="category">
-            <a href="cat.php">
+            <a href="cat.php?category_id=cat">
                 <img src="Assets/Images/cat.jpg" alt="Cat">
             </a>
-            <a href="cat.php"><p>Cat</p></a>
+            <a href="cat.php?category_id=cat"><p>Cat</p></a>
         </div>
         <div class="category">
-            <a href="fish.php">
+            <a href="fish.php?category_id=fish">
                 <img src="Assets/Images/fish.jpg" alt="Fish">
             </a>
-            <a href="cat.php"><p>Fish</p></a>
+            <a href="fish.php?category_id=fish"><p>Fish</p></a>
         </div>
         <div class="category">
-            <a href="bird.php">
+            <a href="bird.php?category_id=bird">
                 <img src="Assets/Images/bird2.png" alt="Bird">
             </a>
-            <a href="cat.php"><p>Bird</p></a>
+            <a href="bird.php?category_id=bird"><p>Bird</p></a>
         </div>
     </div>
 </div>
@@ -59,17 +67,19 @@
     <h2>Featured Products</h2>
     <div class="featured-wrapper">
         <!--clickable product-->
+        <?php foreach ($products as $product){?>
         <a href="product.php" style="text-decoration: none; color: inherit;">
             <div class="types">
                 <div class="product-img mb-3">
                     <i class="cart fa-solid fa-cart-shopping"></i>
-                    <img src="Assets/Images/dogf.png" alt="Healthy Treats">
+                    <img src="<?="storage/".$product['picture']?>" alt="<?= $product['title']?>">
                 </div>
-                <h3>Healthy Treats</h3>
-                <p>RS.50.34$</p>
-                <p class="p_featured">instock</p>
+                <h3><?= $product['title']?></h3>
+                <p><?= "$".$product['price']?></p>
+                <p class="p_featured"><?= $product['p_status']?></p>
             </div>
         </a>
+        <?php }?>
         <div class="types">
             <div class="product-img mb-3">
                 <i class="cart fa-solid fa-cart-shopping"></i> <!-- Add to Cart Icon -->

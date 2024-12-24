@@ -1,3 +1,11 @@
+<?php
+include "init.php";
+session_start();
+$query="SELECT * FROM products WHERE category_id ='" . $_GET['category'] . "'";
+$stmt=$conn->prepare($query);
+$stmt->execute();
+$products=$stmt->fetchAll();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
