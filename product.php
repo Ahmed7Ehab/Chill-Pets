@@ -9,14 +9,33 @@ $products=$stmt->fetch();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['add'])) {
         if (isset($_SESSION['email'])) {
-            $q="SELECT * FROM `users` WHERE email ='".$_SESSION['email']."'";
-            $stmtu=$pdo->prepare($q);
-            $stmtu->execute();
-            $users=$stmtu->fetch();
-            $query = "INSERT INTO `orders`( `user_id`, `product_id`, `use_phone`, `user_address`, `quantity` ) 
+            if ($products['quantity']) {
+                $q = "SELECT * FROM `users` WHERE email ='" . $_SESSION['email'] . "'";
+                $stmtu = $pdo->prepare($q);
+                $stmtu->execute();
+                $users = $stmtu->fetch();
+                $query = "INSERT INTO `orders`( `user_id`, `product_id`, `use_phone`, `user_address`, `quantity` ) 
                                     VALUES(?,?,?,?,?)";
-            $stmto=$pdo->prepare($query);
-            $stmto->execute([$users['id'],$products['id'],$users['phone'],$users['address'],$_POST['quantity']]);
+                $stmto = $pdo->prepare($query);
+                $stmto->execute([$users['id'], $products['id'], $users['phone'], $users['address'], $_POST['quantity']]);
+                $amount = $products['quantity'] - $_POST['quantity'];
+                $qq = "   UPDATE `products` 
+                    SET `quantity` = $amount
+                    WHERE id =$id";
+                $stmt = $pdo->prepare($qq);
+                $stmt->execute();
+                if ($products['quantity'] == 0) {
+                    $qq = "   UPDATE `products` 
+                    SET `p_status` = 'out of stock'
+                    WHERE id =$id";
+                    $stmt = $pdo->prepare($qq);
+                    $stmt->execute();
+                }
+            }
+            else{
+                $message = "product is out of stock";
+                echo "<script>alert('$message');</script>";
+            }
         } else {
             $message = "you are not logged in";
             echo "<script>alert('$message');</script>";
