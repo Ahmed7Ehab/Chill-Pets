@@ -16,11 +16,11 @@ try {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $firstName = htmlspecialchars(trim($_POST['first_name']));
+    $firstName= htmlspecialchars(trim($_POST['first_name']));
     $lastName = htmlspecialchars(trim($_POST['last_name']));
-    $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
-    $phone = htmlspecialchars(trim($_POST['phone']));
-    $address = htmlspecialchars(trim($_POST['address']));
+    $email    = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
+    $phone    = htmlspecialchars(trim($_POST['phone']));
+    $address  = htmlspecialchars(trim($_POST['address']));
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirm_password'];
 
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
 
-    $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+    $hashedPassword = sha1($password);
 
     try {
 
@@ -53,13 +53,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
         $stmt->bindParam(':first_name', $firstName);
-        $stmt->bindParam(':last_name', $lastName);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':phone', $phone);
-        $stmt->bindParam(':address', $address);
-        $stmt->bindParam(':password', $hashedPassword);
-
-
+        $stmt->bindParam(':last_name' , $lastName);
+        $stmt->bindParam(':email'     , $email);
+        $stmt->bindParam(':phone'     ,$phone);
+        $stmt->bindParam(':address'   , $address);
+        $stmt->bindParam(':password'  , $hashedPassword);
         $stmt->execute();
 
         header('location:login.php');

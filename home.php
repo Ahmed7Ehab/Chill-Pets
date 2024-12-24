@@ -5,6 +5,15 @@ $q="SELECT * FROM `products` where avg_rete >='5' limit 4";
 $stmt= $pdo->prepare($q);
 $stmt->execute();
 $products=$stmt->fetchAll();
+$firstname='';
+if (isset($_SESSION['email'])){
+    $q="SELECT * FROM `users` where email='".$_SESSION['email']."'";
+    $stmt=$pdo->prepare($q);
+    $stmt->execute();
+    $user=$stmt->fetch();
+    $firstname=$user['first_name'];
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,9 +35,15 @@ $products=$stmt->fetchAll();
 <div class="homeimg">
     <div class="home-content text-center">
         <h2 class="homtit1"><span class="homtit2">A</span>Shelter Pet Wants</h2>
-        <h2 class="homtit2">To Meet You</h2>
-        <a href="register.php" class="btn register-btn">Register</a>
-        <a href="login.php" class="btn login-btn">Login</a>
+        <h2 class="homtit2">To Meet You <?=$firstname?></h2>
+        <?php if (!isset($_SESSION['email'])) {
+            echo '<a href="register.php" class="btn register-btn">Register</a>';
+            echo '<a href="login.php" class="btn login-btn">Login</a>';
+        }
+        elseif ($_SESSION['role']=="admin") {
+            echo '<a href="admin.php" class="btn login-btn">Admin</a>';
+        }
+        ?>
     </div>
 </div>
 
