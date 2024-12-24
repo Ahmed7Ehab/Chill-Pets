@@ -14,7 +14,7 @@
         }
 
         .navbar-nav {
-            margin-left: 400px;
+            /*margin-left: 350px;*/
         }
 
         .nav-link {
