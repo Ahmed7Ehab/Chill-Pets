@@ -72,7 +72,7 @@
                 <li class="nav-item"><a class="nav-link" href="cat.php?category_id=2">Cat</a></li>
                 <li class="nav-item"><a class="nav-link" href="bird.php?category_id=4">Bird</a></li>
                 <li class="nav-item"><a class="nav-link" href="fish.php?category_id=3">Fish</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.php">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
             </ul>
             <div class="ml-lg-3 d-flex align-items-center">
