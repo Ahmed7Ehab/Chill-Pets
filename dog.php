@@ -1,7 +1,7 @@
 <?php
 include "init.php";
 session_start();
-$id=$_GET['category'];
+$id=$_GET['category_id'];
 $query="SELECT * FROM products WHERE category_id =$id";
 $stmt=$pdo->prepare($query);
 $stmt->execute();
@@ -55,34 +55,6 @@ $products=$stmt->fetchAll();
             </div>
         </a>
         <?php }?>
-        <div class="types">
-            <div class="product-img mb-3">
-                <i class="cart fa-solid fa-cart-shopping"></i>
-                <img src="Assets/Images/product4.jpg" alt="Freeze Dried">
-            </div>
-            <h3>Pro-Rich Fish</h3>
-            <p>RS.50$</p>
-            <p class="p_featured">instock</p>
-        </div>
-        <div class="types">
-            <div class="product-img mb-3">
-                <i class="cart fa-solid fa-cart-shopping"></i>
-                <img src="Assets/Images/product16.jpg" alt="Dog">
-            </div>
-            <h3>Discuss Fish</h3>
-            <p>RS.25.00$</p>
-            <p class="p_featured">soldout</p>
-        </div>
-        <div class="types">
-            <div class="product-img mb-3">
-                <i class="cart fa-solid fa-cart-shopping"></i>
-                <img src="Assets/Images/product20_8d6fda60-29ab-4bfb-a3c1-47d515d4a91c.jpg" alt="Cat">
-            </div>
-            <h3>Pupy Dry Formula Food </h3>
-            <p>RS.60.00$</p>
-            <p class="p_featured">instock</p>
-        </div>
-
     </div>
 </div>
 <?php include 'includes/footer.php'; ?>

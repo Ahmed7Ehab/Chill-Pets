@@ -52,10 +52,10 @@ if (isset($_SESSION['email'])){
     <h2>Shop by <span>Categories</span></h2>
     <div class="categories-wrapper">
         <div class="category">
-            <a href="dog.php?category=1">
+            <a href="dog.php?category_id=1">
                 <img src="Assets/Images/dog.jpg" alt="Dog">
             </a>
-            <a href="cat.php?category_id=1"><p>Dog</p></a>
+            <a href="dog.php?category_id=1"><p>Dog</p></a>
         </div>
         <div class="category">
             <a href="cat.php?category_id=2">

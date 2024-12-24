@@ -68,10 +68,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a class="nav-link" href="home.php">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="dog.php?category=1">Dog</a></li>
-                <li class="nav-item"><a class="nav-link" href="cat.php?category=2">Cat</a></li>
-                <li class="nav-item"><a class="nav-link" href="bird.php?category=4">Bird</a></li>
-                <li class="nav-item"><a class="nav-link" href="fish.php?category=3">Fish</a></li>
+                <li class="nav-item"><a class="nav-link" href="dog.php?category_id=1">Dog</a></li>
+                <li class="nav-item"><a class="nav-link" href="cat.php?category_id=2">Cat</a></li>
+                <li class="nav-item"><a class="nav-link" href="bird.php?category_id=4">Bird</a></li>
+                <li class="nav-item"><a class="nav-link" href="fish.php?category_id=3">Fish</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
             </ul>
