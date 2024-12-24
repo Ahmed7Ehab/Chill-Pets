@@ -172,16 +172,71 @@ if (isset($_SESSION['email'])) {
                                 ?></td>
                             <td><?= $product['p_status'] ?></td>
                             <td><?= $product['quantity'] ?></td>
-                            <div class="actions">
-                                <a href="edit_product.php" class="btn btn-edit">Edit</a>
-                                <a href="delete_product.php" class="btn btn-delete"
-                                   onclick="return confirm('Are you sure you want to delete this product?')">Delete</a>
-                            </div>
+                            <td>
+                                <button class="btn btn-sm btn-warning me-3" data-bs-toggle="modal"
+                                        data-bs-target="#editProductModal" >Edit
+                                </button>
+                                <button class="btn btn-sm btn-danger">Delete</button>
                             </td>
                         </tr>
                     <?php } ?>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Product Modal -->
+<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="editProductName" class="form-label">Product Name</label>
+                        <input type="text" class="form-control" id="editProductName" value="Premium Cat Food" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editProductDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="editProductDescription" rows="3"
+                                  placeholder="Enter detailed description here">Premium cat food made with natural ingredients.</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editProductPrice" class="form-label">Price</label>
+                        <input type="number" class="form-control" id="editProductPrice" value="20.99" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editProductQuantity" class="form-label">Quantity</label>
+                        <input type="number" class="form-control" id="editProductQuantity" value="10" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editProductCategory" class="form-label">Category</label>
+                        <select class="form-select" id="editProductCategory" required>
+                            <option value="" disabled>Select category</option>
+                            <option value="cat" selected>Cat</option>
+                            <option value="dog">Dog</option>
+                            <option value="bird">Bird</option>
+                            <option value="fish">Fish</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editProductStatus" class="form-label">Product Status</label>
+                        <select class="form-select" id="editProductStatus" required>
+                            <option value="in_stock">In Stock</option>
+                            <option value="out_of_stock">Out of Stock</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editProductImage" class="form-label">Product Image</label>
+                        <input type="file" class="form-control" id="editProductImage">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
             </div>
         </div>
     </div>
