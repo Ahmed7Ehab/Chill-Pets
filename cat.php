@@ -33,7 +33,7 @@
 
 <div class="featured_product container my-5">
     <div class="featured-wrapper">
-        <--clickable product-->
+        <!--clickable product-->
         <a href="product.php" style="text-decoration: none; color: inherit;">
             <div class="types">
                 <div class="product-img mb-3">
