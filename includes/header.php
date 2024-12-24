@@ -14,7 +14,7 @@
         }
 
         .navbar-nav {
-            /*margin-left: 350px;*/
+            margin-left: 400px;
         }
 
         .nav-link {
@@ -68,10 +68,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a class="nav-link" href="home.php">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="dog.php">Dog</a></li>
-                <li class="nav-item"><a class="nav-link" href="cat.php">Cat</a></li>
-                <li class="nav-item"><a class="nav-link" href="bird.php">Bird</a></li>
-                <li class="nav-item"><a class="nav-link" href="fish.php">Fish</a></li>
+                <li class="nav-item"><a class="nav-link" href="dog.php?category=1">Dog</a></li>
+                <li class="nav-item"><a class="nav-link" href="cat.php?category=2">Cat</a></li>
+                <li class="nav-item"><a class="nav-link" href="bird.php?category=4">Bird</a></li>
+                <li class="nav-item"><a class="nav-link" href="fish.php?category=3">Fish</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
             </ul>
