@@ -1,0 +1,165 @@
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    margin: 10px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Headings Styling */
+h1, h2 {
+    font-size: 1.8em;
+    font-family: 'Playfair Display', serif;
+    color: #7e4c4f;
+    text-align: center;
+    margin: 0 0 20px;
+    line-height: 1.4;
+}
+
+/* Form Container */
+.form-container {
+    margin: 20px auto;
+    padding: 20px;
+    overflow: visible;
+    width: auto;
+    max-width: 95%;
+    box-sizing: border-box;
+}
+
+.form-container h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #7e4c4f;
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+/* Form Elements */
+.form-label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    color: #7E4C4F;
+    margin: 10px 0px;
+}
+
+.form-control,
+.form-select {
+    border: none;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Fix for File Input Height */
+input[type="file"] {
+    border: none;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 10px;
+    margin-bottom: 30px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 40px;
+    display: block;
+    cursor: pointer;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    background-color: #F6AB4A;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    transition: background-color 0.3s;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+    background-color: #7e4c4f;
+}
+
+/* Form Control focus styles */
+.form-control:focus,
+.form-select:focus {
+    box-shadow: 0 0 2px #7E4C4F;
+    outline: none;
+}
+
+/* Save Changes and Back Buttons */
+.btn {
+    background-color: #F6AB4A;
+    color: #ffffff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 40px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    width: auto;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #7e4c4f;
+    transform: scale(1.05);
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* Edit Form */
+#edit-form {
+    margin-top: 50px;
+    width: 90%;
+    max-width: 800px;
+    padding: 20px;
+    position: relative;
+    transform: none;
+}
+
+#edit-form input {
+    width: 100%;
+}
+
+#image {
+    padding: 0;
+}
+
+/* RESPONSIVE DESIGN */
+
+/* For Small Desktop Screens */
+@media (min-width: 768px) and (max-width: 992px) {
+    .form-container h2 {
+        font-size: 26px;
+    }
+
+    #edit-form {
+        width: 70%;
+    }
+}
+
+/* For Wide Desktop Screens */
+@media (min-width: 992px) {
+    .form-container {
+        width: 60%;
+    }
+
+    #edit-form {
+        width: 40%;
+    }
+
+    h1, h2 {
+        font-size: 2rem;
+    }
+}

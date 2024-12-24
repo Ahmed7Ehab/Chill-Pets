@@ -33,7 +33,7 @@
 
 <!-- Cart Section -->
 <section class="py-5">
-    <div class="container">
+    <div class="container ">
         <!-- Cart Items -->
         <div class="row">
             <div class="col-lg-8">
