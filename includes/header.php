@@ -13,9 +13,6 @@
             color: #f5a63f !important;
         }
 
-        .navbar-nav {
-            margin-left: 400px;
-        }
 
         .nav-link {
             font-size: 1.1rem;
@@ -68,16 +65,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a class="nav-link" href="home.php">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="dog.php?category=dog">Dog</a></li>
-                <li class="nav-item"><a class="nav-link" href="cat.php?category=cat">Cat</a></li>
-                <li class="nav-item"><a class="nav-link" href="bird.php?category=bird">Bird</a></li>
-                <li class="nav-item"><a class="nav-link" href="fish.php?category=fish">Fish</a></li>
+                <li class="nav-item"><a class="nav-link" href="dog.php?category=1">Dog</a></li>
+                <li class="nav-item"><a class="nav-link" href="cat.php?category=2">Cat</a></li>
+                <li class="nav-item"><a class="nav-link" href="bird.php?category=4">Bird</a></li>
+                <li class="nav-item"><a class="nav-link" href="fish.php?category=3">Fish</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
             </ul>
             <div class="ml-lg-3 d-flex align-items-center">
                 <i class="fas fa-user text-white mx-2"></i>
-                <a href="cart.php?category=cart">
+                <a href="cart.php">
                     <i class="fas fa-shopping-cart text-white mx-2"></i>
                 </a>
             </div>

@@ -23,7 +23,8 @@ session_start();
                 header('Location: home.php?message=Login Successful');
             }
             else{
-               /*$formError[]=*/ echo 'something went wrong';
+                $message = "Wrong Email or Password";
+                echo "<script>alert('$message');</script>";
             }
 
         }
@@ -42,7 +43,6 @@ session_start();
                 header('Location: admin.php?message=Login Successful');
             }
             else{
-                echo "something went wrong";
             }
 
         }

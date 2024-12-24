@@ -1,7 +1,8 @@
 <?php
 include "init.php";
 session_start();
-$query="SELECT * FROM products WHERE category_id ='" . $_GET['category'] . "'";
+$id=$_GET['category'];
+$query="SELECT * FROM products WHERE category_id =$id";
 $stmt=$pdo->prepare($query);
 $stmt->execute();
 $products=$stmt->fetchAll();
@@ -14,7 +15,7 @@ $products=$stmt->fetchAll();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dog - Chill Pets</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="cat.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -41,17 +42,19 @@ $products=$stmt->fetchAll();
 <div class="featured_product container my-5">
     <div class="featured-wrapper">
         <!--clickable product-->
-        <a href="product.php" style="text-decoration: none; color: inherit;">
+        <?php foreach ($products as $product) {?>
+        <a href="product.php?id=<?=$product['id']?>" style="text-decoration: none; color: inherit;">
             <div class="types">
                 <div class="product-img mb-3">
                     <i class="cart fa-solid fa-cart-shopping"></i>
-                    <img src="Assets/Images/product3.jpg" alt="Healthy Treats">
+                    <img src="<?= "storage/".$product['picture']?>" alt="<?=$product['title']?>">
                 </div>
-                <h3>Lamb Fillets</h3>
-                <p>RS.80.14$</p>
-                <p class="p_featured">instock</p>
+                <h3><?=$product['title']?></h3>
+                <p><?= "$".$product['price'] ?></p>
+                <p class="p_featured"><?=$product['p_status']?></p>
             </div>
         </a>
+        <?php }?>
         <div class="types">
             <div class="product-img mb-3">
                 <i class="cart fa-solid fa-cart-shopping"></i>
