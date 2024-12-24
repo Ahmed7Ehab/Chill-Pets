@@ -1,10 +1,12 @@
 <?php
 include "init.php";
 session_start();
-
-
+$id=$_GET['id'];
+$query="SELECT * FROM products WHERE id =$id";
+$stmt=$pdo->prepare($query);
+$stmt->execute();
+$products=$stmt->fetch();
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,17 +45,15 @@ session_start();
     <div class="row justify-content-center">
         <!-- Product Image -->
         <div class="col-md-4">
-            <img src="Assets/Images/product19.jpg" class="img-fluid rounded w-100" alt="Product Image">
+            <img src="<?="storage/".$products['picture']?>" class="img-fluid rounded w-100" alt="<?=$products['title']?>">
         </div>
 
         <!-- Product Details -->
         <div class="col-md-6">
-            <h1 class="product-title">Cozy Pet Bed</h1>
-            <p class="product-price">$29.99</p>
+            <h1 class="product-title"><?=$products['title']?></h1>
+            <p class="product-price"><?="$".$products['price']?></p>
             <p class="product-description">
-                Your pet deserves the best rest! This cozy pet bed is designed with soft, durable materials to
-                ensure maximum comfort for your furry friend. Its neutral design makes it a perfect fit for
-                any room decor.
+                <?=$products['product_description	']?>
             </p>
             <p class="product-features">
                 <strong>Features:</strong>
