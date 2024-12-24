@@ -9,15 +9,35 @@ if (isset($_SESSION['email']) ) {
     $stmtu->execute();
     $users=$stmtu->fetch();
     //// oprder
+    $status = "pending";
     $q2="SELECT * FROM `orders` WHERE user_id ='".$users['id']."'";
     $stmt2=$pdo->prepare($q2);
     $stmt2->execute();
     $orders=$stmt2->fetchAll();
+    ///delete
     if (isset($_POST['delete'])) {
         $delet="DELETE FROM `orders` WHERE id ='".$_POST['delete']."'";
         $stmt=$pdo->prepare($delet);
         $stmt->execute();
         header('Location: cart.php');
+    }
+    /// proceed
+    if (isset($_POST['proceed'])) {
+        foreach ($orders as $orderr) {
+            $qq = " UPDATE `orders` 
+                    SET `o_status` = 'confermed'
+                    WHERE id ='".$orderr['id']."'";
+            $stmt = $pdo->prepare($qq);
+            $stmt->execute();
+            
+
+
+            $delett="DELETE FROM `orders` WHERE id ='".$orderr['id']."'";
+            $stmtt=$pdo->prepare($delett);
+            $stmtt->execute();
+            header('Location: cart.php');
+        }
+
     }
     /// product
 //    $query="SELECT * FROM products WHERE id ='".$orders['product_id']."'";
@@ -93,11 +113,11 @@ else{
                                     <div class="mt-4">
                                         <strong>Quantity:<?=$order['quantity']?></strong>
                                         <div class="d-flex align-items-center mt-2">
-                                            <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
+<!--                                            <button class="quantity-btn" onclick="decreaseQuantity()">-</button>-->
                                             <label for="quantity"></label><input type="number" id="quantity"
                                                                                  class="form-control quantity-input mx-2"
                                                                                  value="1" min="1">
-                                            <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+<!--                                            <button class="quantity-btn" onclick="increaseQuantity()">+</button>-->
                                         </div>
                                     </div>
                                     <form action="cart.php" method="post" >
@@ -137,9 +157,11 @@ else{
                             </li>
                         </ul>
                         <!-- Checkout Button -->
-                        <button class="btn-checkout" data-bs-toggle="modal" data-bs-target="#checkoutModal">
+                        <from action="cart.php" method="post">
+                        <button class="btn-checkout" name="procesd" data-bs-toggle="modal" data-bs-target="#checkoutModal">
                             Proceed to Checkout
                         </button>
+                        </from>
                     </div>
                 </div>
             </div>
@@ -147,113 +169,113 @@ else{
 
 
 
-<!-- Checkout Modal -->
-<div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="checkoutModalLabel">Checkout</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group mb-3">
-                        <label for="fullName" class="form-label">Full Name</label>
-                        <input type="text" class="form-control" id="fullName" placeholder="Enter your name" required>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="address" class="form-label">Address</label>
-                        <input type="text" class="form-control" id="address" placeholder="Enter your address" required>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="city" class="form-label">City</label>
-                        <input type="text" class="form-control" id="city" placeholder="Enter your city" required>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="paymentMethod" class="form-label">Payment Method</label>
-                        <select class="form-select" id="paymentMethod" required>
-                            <option value="" selected disabled>Select Payment Method</option>
-                            <option value="credit-card">Credit Card</option>
-                            <option value="paypal">PayPal</option>
-                        </select>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn-modal-cancel" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn-modal-confirm" data-bs-toggle="modal"
-                        data-bs-target="#orderConfirmationModal">Confirm Payment
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Order Confirmation Modal -->
-<div class="modal fade" id="orderConfirmationModal" tabindex="-1" aria-labelledby="orderConfirmationModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header bg-success text-white">
-                <h5 class="modal-title" id="orderConfirmationModalLabel">Order Confirmed!</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center">
-                <p class="text-success fs-4">🎉 Your order has been successfully placed!</p>
-                <p class="text-muted">
-                    Thank you for choosing Chill Pets. You will receive a confirmation email shortly with the details.
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn-modal-cancel" data-bs-toggle="modal"
-                        data-bs-target="#orderCanceledModal">Cancel Order
-                </button>
-                <button type="button" class="btn-modal-confirm" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Order Canceled Modal -->
-<div class="modal fade" id="orderCanceledModal" tabindex="-1" aria-labelledby="orderCanceledModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header bg-danger text-white">
-                <h5 class="modal-title" id="orderCanceledModalLabel">Order Canceled</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center">
-                <p class="text-danger fs-4">🚫 Your order has been canceled.</p>
-                <p class="text-muted">
-                    You can continue shopping or place a new order anytime. Thank you for visiting Chill Pets!
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn-modal-confirm" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- Checkout Modal -->-->
+<!--<div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog modal-dialog-centered">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="checkoutModalLabel">Checkout</h5>-->
+<!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <form>-->
+<!--                    <div class="form-group mb-3">-->
+<!--                        <label for="fullName" class="form-label">Full Name</label>-->
+<!--                        <input type="text" class="form-control" id="fullName" placeholder="Enter your name" required>-->
+<!--                    </div>-->
+<!--                    <div class="form-group mb-3">-->
+<!--                        <label for="address" class="form-label">Address</label>-->
+<!--                        <input type="text" class="form-control" id="address" placeholder="Enter your address" required>-->
+<!--                    </div>-->
+<!--                    <div class="form-group mb-3">-->
+<!--                        <label for="city" class="form-label">City</label>-->
+<!--                        <input type="text" class="form-control" id="city" placeholder="Enter your city" required>-->
+<!--                    </div>-->
+<!--                    <div class="form-group mb-3">-->
+<!--                        <label for="paymentMethod" class="form-label">Payment Method</label>-->
+<!--                        <select class="form-select" id="paymentMethod" required>-->
+<!--                            <option value="" selected disabled>Select Payment Method</option>-->
+<!--                            <option value="credit-card">Credit Card</option>-->
+<!--                            <option value="paypal">PayPal</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn-modal-cancel" data-bs-dismiss="modal">Cancel</button>-->
+<!--                <button type="button" class="btn-modal-confirm" data-bs-toggle="modal"-->
+<!--                        data-bs-target="#orderConfirmationModal">Confirm Payment-->
+<!--                </button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!---->
+<!--<!-- Order Confirmation Modal -->-->
+<!--<div class="modal fade" id="orderConfirmationModal" tabindex="-1" aria-labelledby="orderConfirmationModalLabel"-->
+<!--     aria-hidden="true">-->
+<!--    <div class="modal-dialog modal-dialog-centered">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header bg-success text-white">-->
+<!--                <h5 class="modal-title" id="orderConfirmationModalLabel">Order Confirmed!</h5>-->
+<!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--            </div>-->
+<!--            <div class="modal-body text-center">-->
+<!--                <p class="text-success fs-4">🎉 Your order has been successfully placed!</p>-->
+<!--                <p class="text-muted">-->
+<!--                    Thank you for choosing Chill Pets. You will receive a confirmation email shortly with the details.-->
+<!--                </p>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn-modal-cancel" data-bs-toggle="modal"-->
+<!--                        data-bs-target="#orderCanceledModal">Cancel Order-->
+<!--                </button>-->
+<!--                <button type="button" class="btn-modal-confirm" data-bs-dismiss="modal">Close</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!---->
+<!-- Order Canceled Modal -->-->
+<!--<div class="modal fade" id="orderCanceledModal" tabindex="-1" aria-labelledby="orderCanceledModalLabel"-->
+<!--     aria-hidden="true">-->
+<!--    <div class="modal-dialog modal-dialog-centered">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header bg-danger text-white">-->
+<!--                <h5 class="modal-title" id="orderCanceledModalLabel">Order Canceled</h5>-->
+<!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--            </div>-->
+<!--            <div class="modal-body text-center">-->
+<!--                <p class="text-danger fs-4">🚫 Your order has been canceled.</p>-->
+<!--                <p class="text-muted">-->
+<!--                    You can continue shopping or place a new order anytime. Thank you for visiting Chill Pets!-->
+<!--                </p>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn-modal-confirm" data-bs-dismiss="modal">Close</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 <?php include 'includes/footer.php'; ?>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    function increaseQuantity() {
-        const quantityInput = document.getElementById('quantity');
-        const currentValue = parseInt(quantityInput.value);
-        quantityInput.value = currentValue + 1;
-    }
-
-    function decreaseQuantity() {
-        const quantityInput = document.getElementById('quantity');
-        const currentValue = parseInt(quantityInput.value);
-        if (currentValue > 1) {
-            quantityInput.value = currentValue - 1;
-        }
-    }
-</script>
+<!---->
+<!-- Bootstrap JS -->-->
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>-->
+<!--<script>-->
+<!--    function increaseQuantity() {-->
+<!--        const quantityInput = document.getElementById('quantity');-->
+<!--        const currentValue = parseInt(quantityInput.value);-->
+<!--        quantityInput.value = currentValue + 1;-->
+<!--    }-->
+<!---->
+<!--    function decreaseQuantity() {-->
+<!--        const quantityInput = document.getElementById('quantity');-->
+<!--        const currentValue = parseInt(quantityInput.value);-->
+<!--        if (currentValue > 1) {-->
+<!--            quantityInput.value = currentValue - 1;-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
 </body>
 
 </html>

@@ -8,12 +8,13 @@ if (isset($_SESSION['email'])) {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_POST['add'])) {
                 $query = 'INSERT INTO products (category_id ,title,picture,product_description,price,p_status,quantity)
-                    values (:category,:title,:picture,:description,:price,:p_status,:quantity)';
-                $name = $_POST['name'];
-                $price = $_POST['price'];
+                                        values (:category  ,:title,:picture,:description,     :price,:p_status,:quantity)';
+                $name        = $_POST['name'];
+                $price       = $_POST['price'];
                 $description = $_POST['description'];
-                $quantity = $_POST['quantity'];
-                $category = strtolower($_POST['category']);
+                $quantity    = $_POST['quantity'];
+                $status      = $_POST['status'];
+                $category    = $_POST['category'];
                 //picture info
                 $picture = $_FILES['picture']['name'];
                 $picture_temp = $_FILES['picture']['tmp_name'];
@@ -23,17 +24,19 @@ if (isset($_SESSION['email'])) {
                 if (in_array($picture_ext, $allowed)) {
                     if ($picture_size <= 2097152) {
                         $stmt = $pdo->prepare($query);
-                        $stmt->bindValue(':category', $category);
-                        $stmt->bindValue(':title', $name);
-                        $stmt->bindValue(':picture', $picture);
+                        $stmt->bindValue(':category',    $category);
+                        $stmt->bindValue(':title',       $name);
+                        $stmt->bindValue(':picture',     $picture);
                         $stmt->bindValue(':description', $description);
-                        $stmt->bindValue(':price', $price);
-                        $stmt->bindValue(':quantity', $quantity);
+                        $stmt->bindValue(':price',       $price);
+                        $stmt->bindValue(':p_status',    $status);
+                        $stmt->bindValue(':quantity',    $quantity);
                         $stmt->execute();
                         move_uploaded_file($picture_temp, "storage/$picture");
                         if ($quantity) {
-                            $stmt->bindValue(':p_status', 'instock');
+                            $stmt->bindValue(':p_status', 'In stock');
                             $stmt->execute();
+
                         }
                     }
                 }
@@ -96,7 +99,7 @@ if (isset($_SESSION['email'])) {
                 <!--quantity-->
                 <div class="mb-3">
                     <label for="productPrice" class="form-label">Quantity</label>
-                    <input type="number" class="form-control" id="productPrice" name="price"
+                    <input type="number" class="form-control" id="productPrice" name="quantity"
                            placeholder="Enter quantity" required>
                 </div>
                 <!--category-->
@@ -113,7 +116,7 @@ if (isset($_SESSION['email'])) {
                 <!--status-->
                 <div class="mb-3">
                     <label for="productStatus" class="form-label">Product Status</label>
-                    <select class="form-select" id="productStatus" required>
+                    <select class="form-select" id="productStatus" name="status" required>
                         <option value="" disabled selected>Choose status</option>
                         <option value="in_stock">In Stock</option>
                         <option value="out_of_stock">Out of Stock</option>
@@ -174,8 +177,8 @@ if (isset($_SESSION['email'])) {
                             <td><?= $product['quantity'] ?></td>
                             <td>
                                 <div class="actions">
-                                    <a href="edit_product.php" class="btn btn-edit">Edit</a>
-                                    <a href="delete_product.php" class="btn btn-delete"
+                                    <a href="edit_product.php?id=<?=$product['id']?>" class="btn btn-edit">Edit</a>
+                                    <a href="delete_product.php?id=<?=$product['id']?>" class="btn btn-delete">Delete</a>
 <!--                                       onclick="return confirm('Are you sure you want to delete this product?')">Delete</a>-->
                                 </div>
                             </td>
