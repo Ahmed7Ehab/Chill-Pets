@@ -1,3 +1,37 @@
+<?php
+include "init.php";
+session_start();
+if (isset($_SESSION['email']) ) {
+    $total=0;
+    /// user
+    $q="SELECT * FROM `users` WHERE email ='".$_SESSION['email']."'";
+    $stmtu=$pdo->prepare($q);
+    $stmtu->execute();
+    $users=$stmtu->fetch();
+    //// oprder
+    $q2="SELECT * FROM `orders` WHERE user_id ='".$users['id']."'";
+    $stmt2=$pdo->prepare($q2);
+    $stmt2->execute();
+    $orders=$stmt2->fetchAll();
+    if (isset($_POST['delete'])) {
+        $delet="DELETE FROM `orders` WHERE id ='".$_POST['delete']."'";
+        $stmt=$pdo->prepare($delet);
+        $stmt->execute();
+        header('Location: cart.php');
+    }
+    /// product
+//    $query="SELECT * FROM products WHERE id ='".$orders['product_id']."'";
+//    $stmt=$pdo->prepare($query);
+//    $stmt->execute();
+//    $products=$stmt->fetch();
+}
+else{
+    echo "faild";
+  //  exit;
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,22 +69,29 @@
 <section class="py-5">
     <div class="container">
         <!-- Cart Items -->
+        <?php foreach ($orders as $order) {
+            $q4="SELECT * FROM products WHERE id ='".$order['product_id']."'";
+            $stmt4=$pdo->prepare($q4);
+            $stmt4->execute();
+            $product=$stmt4->fetch();
+            $total=$product['price']*$order['quantity'];
+            ?>
         <div class="row">
             <div class="col-lg-8">
                 <div class="card mb-3">
                     <div class="row g-0 align-items-center">
                         <div class="col-md-4">
-                            <img src="Assets/Images/product19.jpg" class="product-image img-fluid w-100 rounded-start"
-                                 alt="Product Image">
+                            <img src="<?="storage/".$product['picture']?>" class="product-image img-fluid w-100 rounded-start"
+                                 alt="<?=$product['title']?>">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title product-title">Dog Chew Toy</h5>
-                                <p class="card-text product-description">Durable and fun toy for your pet.</p>
+                                <h5 class="card-title product-title"><?=$product['title']?></h5>
+                                <p class="card-text product-description"><?=$product['product_description']?>.</p>
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <span class="fw-bold">$15.99</span>
+                                    <span class="fw-bold"><?="$".$product['title']?></span>
                                     <div class="mt-4">
-                                        <strong>Quantity:</strong>
+                                        <strong>Quantity:<?=$order['quantity']?></strong>
                                         <div class="d-flex align-items-center mt-2">
                                             <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
                                             <label for="quantity"></label><input type="number" id="quantity"
@@ -59,18 +100,21 @@
                                             <button class="quantity-btn" onclick="increaseQuantity()">+</button>
                                         </div>
                                     </div>
-                                    <button class="btn-remove">
+                                    <form action="cart.php" method="post" >
+                                    <button class="btn-remove" name="delete" value="<?=$order['id']?>">
                                         Remove
                                     </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
+        </div>
+            <?php } ?>
             <!-- Summary Section -->
-            <div class="col-lg-4">
+            <div class="col-lg-8">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title summary-title">Cart Summary</h4>
@@ -89,7 +133,7 @@
                             </li>
                             <li class="list-group-item d-flex justify-content-between fw-bold">
                                 <span>Total</span>
-                                <span>$22.24</span>
+                                <span><?="$".(double)$total+22.24?></span>
                             </li>
                         </ul>
                         <!-- Checkout Button -->
@@ -100,8 +144,8 @@
                 </div>
             </div>
         </div>
-    </div>
-</section>
+
+
 
 <!-- Checkout Modal -->
 <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">

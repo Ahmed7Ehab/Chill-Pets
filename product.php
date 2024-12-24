@@ -1,11 +1,31 @@
 <?php
 include "init.php";
 session_start();
-$id=$_GET['id'];
+$id = $_GET['id'];
 $query="SELECT * FROM products WHERE id =$id";
 $stmt=$pdo->prepare($query);
 $stmt->execute();
 $products=$stmt->fetch();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['add'])) {
+        if (isset($_SESSION['email'])) {
+            $q="SELECT * FROM `users` WHERE email ='".$_SESSION['email']."'";
+            $stmtu=$pdo->prepare($q);
+            $stmtu->execute();
+            $users=$stmtu->fetch();
+            $query = "INSERT INTO `orders`( `user_id`, `product_id`, `use_phone`, `user_address`, `quantity` ) 
+                                    VALUES(?,?,?,?,?)";
+            $stmto=$pdo->prepare($query);
+            $stmto->execute([$users['id'],$products['id'],$users['phone'],$users['address'],$_POST['quantity']]);
+        } else {
+            $message = "you are not logged in";
+            echo "<script>alert('$message');</script>";
+        }
+    }
+}
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +73,7 @@ $products=$stmt->fetch();
             <h1 class="product-title"><?=$products['title']?></h1>
             <p class="product-price"><?="$".$products['price']?></p>
             <p class="product-description">
-                <?=$products['product_description	']?>
+                <?=$products['product_description']?>
             </p>
             <p class="product-features">
                 <strong>Features:</strong>
@@ -62,20 +82,22 @@ $products=$stmt->fetch();
                 <li>Machine washable for easy cleaning</li>
                 <li>Available in multiple sizes and colors</li>
             </ul>
-
+            <form action="<?=$_SERVER['PHP_SELF']."?id={$products['id']}"?>" method="post">
             <!-- Quantity Selector -->
             <div class="mt-4">
                 <strong>Quantity:</strong>
                 <div class="d-flex align-items-center mt-2">
                     <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
                     <label for="quantity"></label><input type="number" id="quantity"
-                                                         class="form-control quantity-input mx-2" value="1" min="1">
+                                                         class="form-control quantity-input mx-2"
+                                                         value="1" min="1"
+                                                          name="quantity"      >
                     <button class="quantity-btn" onclick="increaseQuantity()">+</button>
                 </div>
             </div>
-
             <!-- Add to Cart Button -->
-            <button class="btn btn-add-to-cart mt-4">Add to Cart</button>
+            <button class="btn btn-add-to-cart mt-4" name="add">Add to Cart</button>
+            </form>
         </div>
     </div>
 </div>
