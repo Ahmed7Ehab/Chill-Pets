@@ -48,7 +48,7 @@ $products=$stmt->fetchAll();
             <a href="product.php?id=<?=$product['id']?>" style="text-decoration: none; color: inherit;">
                 <div class="types">
                     <div class="product-img mb-3">
-                        <i class="cart fa-solid fa-cart-shopping"></i>
+<!--                        <i class="cart fa-solid fa-cart-shopping"></i>-->
                         <img src="<?= "storage/".$product['picture']?>" alt="<?=$product['title']?>">
                     </div>
                     <h3><?=$product['title']?></h3>

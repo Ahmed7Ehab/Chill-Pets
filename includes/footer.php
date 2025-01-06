@@ -104,8 +104,7 @@
             <h2>Help</h2>
         </div>
         <div class="help-links">
-            <a href="../contact.php">Contact Us</a>
-            <a href="../about.php"">About Us</a>
+            <a href="about.php">About Us</a>
             <a href="#">Careers</a>
             <a href="#">Refund & Return</a>
             <a href="#">Deliveries</a>

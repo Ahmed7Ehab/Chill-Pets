@@ -24,7 +24,8 @@ session_start();
             }
             else{
                 $message = "Wrong Email or Password";
-                echo "<script>alert('$message');</script>";
+                //echo "<script>alert('$message');</script>";
+                echo $message;
             }
 
         }

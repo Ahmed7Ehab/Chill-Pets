@@ -10,15 +10,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['add'])) {
         if (isset($_SESSION['email'])) {
             if ($products['quantity']) {
+                //
                 $q = "SELECT * FROM `users` WHERE email ='" . $_SESSION['email'] . "'";
                 $stmtu = $pdo->prepare($q);
                 $stmtu->execute();
                 $users = $stmtu->fetch();
+                //
                 $query = "INSERT INTO `orders`( `user_id`, `product_id`, `use_phone`, `user_address`, `quantity` ) 
                                     VALUES(?,?,?,?,?)";
                 $stmto = $pdo->prepare($query);
                 $stmto->execute([$users['id'], $products['id'], $users['phone'], $users['address'], $_POST['quantity']]);
                 $amount = $products['quantity'] - $_POST['quantity'];
+                //
                 $qq = "   UPDATE `products` 
                     SET `quantity` = $amount
                     WHERE id =$id";
@@ -104,12 +107,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="mt-4">
                 <strong>Quantity:</strong>
                 <div class="d-flex align-items-center mt-2">
-                    <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
+<!--                    <button class="quantity-btn" onclick="decreaseQuantity()">-</button>-->
                     <label for="quantity"></label><input type="number" id="quantity"
                                                          class="form-control quantity-input mx-2"
                                                          value="1" min="1"
                                                           name="quantity"      >
-                    <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+<!--                    <button class="quantity-btn" onclick="increaseQuantity()">+</button>-->
                 </div>
             </div>
             <!-- Add to Cart Button -->

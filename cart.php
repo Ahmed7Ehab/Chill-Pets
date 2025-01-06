@@ -180,7 +180,7 @@ else{
                 </div>
             </div>
         </div>
-
+</section>
 <!-- Checkout Modal -->
 <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">

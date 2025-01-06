@@ -1,7 +1,7 @@
 <?php
 include "init.php";
 session_start();
-$q="SELECT * FROM `products` where avg_rete >='5' limit 4";
+$q="SELECT * FROM `products`  order by avg_rete limit 4";
 $stmt= $pdo->prepare($q);
 $stmt->execute();
 $products=$stmt->fetchAll();
@@ -87,10 +87,10 @@ if (isset($_SESSION['email'])){
     <div class="featured-wrapper">
         <!--clickable product-->
         <?php foreach ($products as $product){?>
-        <a href="product.php" style="text-decoration: none; color: inherit;">
+        <a href="product.php?id=<?=$product['id']?>" style="text-decoration: none; color: inherit;">
             <div class="types">
                 <div class="product-img mb-3">
-                    <i class="cart fa-solid fa-cart-shopping"></i>
+<!--                    <i class="cart fa-solid fa-cart-shopping"></i>-->
                     <img src="<?="storage/".$product['picture']?>" alt="<?= $product['title']?>">
                 </div>
                 <h3><?= $product['title']?></h3>
@@ -99,79 +99,10 @@ if (isset($_SESSION['email'])){
             </div>
         </a>
         <?php }?>
-        <div class="types">
-            <div class="product-img mb-3">
-                <i class="cart fa-solid fa-cart-shopping"></i> <!-- Add to Cart Icon -->
-                <img src="Assets/Images/lowsunf.png" alt="Freeze Dried">
-            </div>
-            <h3>Freeze Dried</h3>
-            <p>RS.18.47$</p>
-            <p class="p_featured">instock</p>
-        </div>
-        <div class="types">
-            <div class="product-img mb-3">
-                <i class="cart fa-solid fa-cart-shopping"></i> <!-- Add to Cart Icon -->
-                <img src="Assets/Images/prodied.png" alt="Dog">
-            </div>
-            <h3>prodied</h3>
-            <p>RS.25.00$</p>
-            <p class="p_featured">soldout</p>
-        </div>
-        <div class="types">
-            <div class="product-img mb-3">
-                <i class="cart fa-solid fa-cart-shopping"></i> <!-- Add to Cart Icon -->
-                <img src="Assets/Images/freezed.png" alt="Cat">
-            </div>
-            <h3>Freezed </h3>
-            <p>RS.30.00$</p>
-            <p class="p_featured">instock</p>
-        </div>
-
     </div>
 </div>
 
 
-<div class="featured_product">
-    <div class="featured-wrapper">
-        <div class="types">
-            <div class="product-img mb-3">
-                <i class="cart fa-solid fa-cart-shopping"></i>
-                <img src="Assets/Images/Lamb_Fillets.png" alt="Healthy Treats">
-            </div>
-            <h3>Lamb Fillets</h3>
-            <p>RS.80.14$</p>
-            <p class="p_featured">instock</p>
-        </div>
-        <div class="types">
-            <div class="product-img mb-3">
-                <i class="cart fa-solid fa-cart-shopping"></i>
-                <img src="Assets/Images/pro-rich-fish.png" alt="Freeze Dried">
-            </div>
-            <h3>Pro-Rich Fish</h3>
-            <p>RS.50$</p>
-            <p class="p_featured">instock</p>
-        </div>
-        <div class="types">
-            <div class="product-img mb-3">
-                <i class="cart fa-solid fa-cart-shopping"></i>
-                <img src="Assets/Images/Discuss_fish.png" alt="Dog">
-            </div>
-            <h3>Discuss Fish</h3>
-            <p>RS.25.00$</p>
-            <p class="p_featured">soldout</p>
-        </div>
-        <div class="types">
-            <div class="product-img mb-3">
-                <i class="cart fa-solid fa-cart-shopping"></i>
-                <img src="Assets/Images/Pupy_Dry_Formulaf.webp" alt="Cat">
-            </div>
-            <h3>Pupy Dry Formula Food </h3>
-            <p>RS.60.00$</p>
-            <p class="p_featured">instock</p>
-        </div>
-
-    </div>
-</div>
 <?php include 'includes/footer.php'; ?>
 
 <!-- Bootstrap JS -->

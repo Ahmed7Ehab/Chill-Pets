@@ -32,11 +32,11 @@ if (isset($_SESSION['email'])) {
                         $stmt->bindValue(':quantity',    $quantity);
                         $stmt->execute();
                         move_uploaded_file($picture_temp, "storage/$picture");
-                        if ($quantity) {
-                            $stmt->bindValue(':p_status', 'In stock');
-                            $stmt->execute();
-
-                        }
+//                        if ($quantity) {
+//                            $stmt->bindValue(':p_status', 'In stock');
+//                            $stmt->execute();
+//
+//                        }
                     }
                 }
             }
@@ -193,7 +193,7 @@ if (isset($_SESSION['email'])) {
     </div>
 </div>
 
-<!--<!-- Edit Product Modal -->-->
+<!-- Edit Product Modal -->
 <!--<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">-->
 <!--    <div class="modal-dialog modal-dialog-centered">-->
 <!--        <div class="modal-content">-->
