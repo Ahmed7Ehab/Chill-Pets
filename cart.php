@@ -4,13 +4,13 @@ session_start();
 if (isset($_SESSION['email']) ) {
     $total=0;
     /// user
-    $q="SELECT * FROM `users` WHERE email ='".$_SESSION['email']."'";
+    $q="SELECT * FROM `users` WHERE email ='".$_SESSION['email']."' limit 1"; ;
     $stmtu=$pdo->prepare($q);
     $stmtu->execute();
     $users=$stmtu->fetch();
     //// oprder
     $status = "pending";
-    $q2="SELECT * FROM `orders` WHERE user_id ='".$users['id']."'";
+    $q2="SELECT * FROM `orders` WHERE user_id ='".$users['id']."'and o_status ='pending'";
     $stmt2=$pdo->prepare($q2);
     $stmt2->execute();
     $orders=$stmt2->fetchAll();
@@ -31,14 +31,16 @@ if (isset($_SESSION['email']) ) {
                     WHERE id ='".$orderr['id']."'";
             $stmt = $pdo->prepare($qq);
             $stmt->execute();
-            $cq="INSERT INTO `confermed`( `order_id`, `user_id`,) VALUES ( :oid,:uid)";
-            $stmt=$pdo->prepare($cq);
-            $stmt->bindParam(':oid', $orderr['id']);
-            $stmt->bindParam(':uid',$uid );
-
-            $delett="DELETE FROM `orders` WHERE id ='".$orderr['id']."'";
-            $stmtt=$pdo->prepare($delett);
-            $stmtt->execute();
+            //conferm
+            $cq="INSERT INTO `confermed`( `order_id`, `user_id`) VALUES ( :oid,:uid)";
+            $stmt2=$pdo->prepare($cq);
+            $stmt2->bindParam(':oid', $orderr['id']);
+            $stmt2->bindParam(':uid',$users['id'] );
+            $stmt2->execute();
+            //
+//            $delett="DELETE FROM `orders` WHERE id ='".$orderr['id']."'";
+//            $stmtt=$pdo->prepare($delett);
+//            $stmtt->execute();
             header('Location: cart.php');
         }
 
@@ -157,15 +159,23 @@ else{
                             </li>
                             <li class="list-group-item d-flex justify-content-between fw-bold">
                                 <span>Total</span>
-                                <span><?="$".(double)$total+22.24?></span>
+                                <span><?php
+                                    if ($total) {
+                                        echo "$" . (double)$total + 22.24;
+                                    }
+                                    else{
+                                        echo "$0";
+                                    }
+                                    ?>
+                                </span>
                             </li>
                         </ul>
                         <!-- Checkout Button -->
-                        <from action="cart.php" method="post">
-                        <button class="btn-checkout" data-bs-toggle="modal" data-bs-target="#checkoutModal" name="proceed">
+                        <form action="cart.php" method="post">
+                        <button class="btn-checkout"  name="proceed">
                                 Proceed to Checkout
                             </button>
-                        </from>
+                        </form>
                     </div>
                 </div>
             </div>

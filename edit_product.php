@@ -94,7 +94,7 @@ $id = $_GET['id'];
                    value="" required>
 
             <label class="form-label" for="quantity">Quantity: </label>
-            <input class="form-control" type="number" step="0.01" name="quantity" id="quantity"
+            <input class="form-control" type="number"  name="quantity" id="quantity"
                    value="" required>
 
             <label class="form-label" for="category">Category: </label>

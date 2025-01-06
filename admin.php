@@ -4,7 +4,6 @@ include 'init.php';
 session_start();
 if (isset($_SESSION['email'])) {
     if ($_SESSION['role'] == 'admin') {
-
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_POST['add'])) {
                 $query = 'INSERT INTO products (category_id ,title,picture,product_description,price,p_status,quantity)
@@ -60,10 +59,13 @@ if (isset($_SESSION['email'])) {
     <title>Chill Pets Admin Dashboard</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="admin.css">
 </head>
 <body>
+<?php include 'includes/header.php'; ?>
 <div class="container my-5">
     <!-- Header -->
     <header class="mb-4 text-center">

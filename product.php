@@ -24,15 +24,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     WHERE id =$id";
                 $stmt = $pdo->prepare($qq);
                 $stmt->execute();
-                if ($products['quantity'] == 0) {
-                    $qq = "   UPDATE `products` 
-                    SET `p_status` = 'out of stock'
-                    WHERE id =$id";
-                    $stmt = $pdo->prepare($qq);
-                    $stmt->execute();
-                }
             }
             else{
+                $qq = "   UPDATE `products` 
+                    SET `p_status` = 'out of stock'
+                    WHERE id =$id";
+                $stmt = $pdo->prepare($qq);
+                $stmt->execute();
                 $message = "product is out of stock";
                 echo "<script>alert('$message');</script>";
             }

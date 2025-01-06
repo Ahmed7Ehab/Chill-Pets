@@ -59,7 +59,7 @@
         }
     </style>
     <div class="container">
-        <a class="navbar-brand" href="#">Chill Pets</a>
+        <a class="navbar-brand" href="home.php">Chill Pets</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -76,7 +76,7 @@
                 <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
             </ul>
             <div class="ml-lg-3 d-flex align-items-center">
-                <i class="fas fa-user text-white mx-2"></i>
+<!--                <i class="fas fa-user text-white mx-2"></i>-->
                 <a href="cart.php">
                     <i class="fas fa-shopping-cart text-white mx-2"></i>
                 </a>

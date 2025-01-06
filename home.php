@@ -42,6 +42,10 @@ if (isset($_SESSION['email'])){
         }
         elseif ($_SESSION['role']=="admin") {
             echo '<a href="admin.php" class="btn login-btn">Admin</a>';
+            echo '<a href="logout.php" class="btn register-btn">Logout</a>';
+        }
+        else {
+            echo '<a href="logout.php" class="btn register-btn">Logout</a>';
         }
         ?>
     </div>
